@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.1mlz1" initialize-with-hyphen="false" demote-non-dropping-particle="sort-only" default-locale="en-US">
   <info>
-    <title>北京航空航天大学</title>
-    <title-short>BUAA</title-short>
-    <id>http://www.zotero.org/styles/beihang-university</id>
+    <title>北京航空航天大学（编辑arxiv格式）</title>
+    <title-short>BUAA(edit arxiv)</title-short>
+    <id>http://www.zotero.org/styles/beihang-university-edit-arxiv</id>
     <link href="http://www.zotero.org/styles/beihang-university" rel="self"/>
     <link href="http://graduate.buaa.edu.cn/info/1039/7831.htm" rel="documentation"/>
     <author>
@@ -159,8 +159,17 @@
   <macro name="publisherSupp">
     <group delimiter="">
       <text variable="publisher-place" prefix=" " suffix=": "/>
-      <group delimiter=", ">
-        <text variable="publisher"/>
+      <group>
+        <choose>
+          <if type="article" variable="number" match="all">
+            <!-- 针对arxiv等预印本 -->
+            <text variable="publisher" prefix=" "/>
+            <number variable="number" prefix=" prerprint " suffix=", "/>
+          </if>
+          <else>
+            <text variable="publisher" suffix=", "/>
+          </else>
+        </choose>
         <choose>
           <if type="webpage" variable="container-title" match="all">
             <date variable="issued" suffix=". ">
